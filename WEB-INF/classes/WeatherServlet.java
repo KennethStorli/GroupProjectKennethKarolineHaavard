@@ -8,10 +8,26 @@ import java.util.Date;
 
 public class WeatherServlet extends HttpServlet {
 
+PrintWriter out;
+
    @Override
    public void doGet(HttpServletRequest request, HttpServletResponse response)
          throws IOException, ServletException{
-         	//here is a comment
+
+		out = response.getWriter();
+         try {
+         	out.println("<html>");
+         	out.println("<head><title>Weather App</title><style>#map {height: 400px;  width: 100%;  }</style></head>");
+         	out.println("<body>");
+         	out.println("<div id=\"map\"></div><script>function initMap() {var uluru = {lat: -25.344, lng: 131.036};var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: uluru});var marker = new google.maps.Marker({position: uluru, map: map});}</script><script async defer src=\"https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap\"></script>");
+
+         	out.println("<h1>Winter is coming</h1>"); 
+
+         	out.println("</body></html>");
+
+         }finally {
+         	out.close();  // Always close the output writer
+      	}
     }
 
 
